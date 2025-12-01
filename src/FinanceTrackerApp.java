@@ -67,13 +67,32 @@ public class FinanceTrackerApp {
         String id = scanner.next();
         scanner.nextLine();
 
-        System.out.println("Enter type (Income/Expense): ");
-        String type = scanner.next();
+        String type;
+        while (true) {
+            System.out.println("Enter type (Income/Expense): ");
+            type = scanner.next();
+
+            if (!type.equalsIgnoreCase("INCOME") && !type.equalsIgnoreCase("Expense")) {
+                System.out.println("Type should be income or expense");
+            } else {
+                break;
+            }
+        }
+
         scanner.nextLine();
 
-        System.out.println("Enter amount: ");
-        double amount = scanner.nextDouble();
-        scanner.nextLine();
+
+        double amount;
+        while (true) {
+            System.out.print("Enter amount: ");
+            amount = scanner.nextDouble();
+            if (amount < 0) {
+                System.out.println("Amount cannot be negative. Try again.");
+            } else {
+                break;
+            }
+        }
+
 
         System.out.println("Enter date(DD-MM-YYYY): ");
         String date = scanner.next();
@@ -82,11 +101,6 @@ public class FinanceTrackerApp {
         System.out.println("Enter description: ");
         String description = scanner.nextLine();
 
-
-        if (amount < 0 || (!type.equalsIgnoreCase("INCOME") && !type.equalsIgnoreCase("EXPENSE"))) {
-            System.out.println("Please enter a valid type (Income/Expense) or amount should be positive number");
-            return;
-        }
 
         Transaction t1 = new Transaction(id, type, amount, date, description);
         transactions.add(t1);
@@ -138,8 +152,18 @@ public class FinanceTrackerApp {
                 switch (choice) {
 
                     case "a":
-                        System.out.print("Enter new type (Income/Expense): ");
-                        t.setType(scanner.next());
+                        String type;
+                        while (true) {
+                            System.out.println("Enter type (Income/Expense) to update: ");
+                            type = scanner.next();
+
+                            if (!type.equalsIgnoreCase("INCOME") && !type.equalsIgnoreCase("Expense")) {
+                                System.out.println("Type should be income or expense");
+                            } else {
+                                break;
+                            }
+                        }
+                        t.setType(type);
                         break;
 
                     case "b":
@@ -168,8 +192,17 @@ public class FinanceTrackerApp {
                         break;
 
                     case "e":
-                        System.out.print("Enter new type (Income/Expense): ");
-                        t.setType(scanner.next());
+                        while (true) {
+                            System.out.println("Enter type (Income/Expense) to update: ");
+                            type = scanner.next();
+
+                            if (!type.equalsIgnoreCase("INCOME") && !type.equalsIgnoreCase("Expense")) {
+                                System.out.println("Type should be income or expense");
+                            } else {
+                                break;
+                            }
+                        }
+                        t.setType(type);
 
                         double amt;
                         while (true) {
@@ -204,7 +237,6 @@ public class FinanceTrackerApp {
             System.out.println("Transaction not found!");
         }
     }
-
 
 
     //Delete transaction
@@ -249,7 +281,7 @@ public class FinanceTrackerApp {
         }
         System.out.println("Total income is: " + inc);
         System.out.println("Total expense is: " + exp);
-        System.out.println("Your balance is: " + (inc - exp));
+        System.out.println("Your balance is: " + (inc - exp) + "taka");
 
     }
 
