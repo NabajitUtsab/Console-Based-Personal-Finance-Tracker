@@ -20,13 +20,16 @@ public class Transaction {
         if (type.equalsIgnoreCase("INCOME") || type.equalsIgnoreCase("EXPENSE")) {
             this.type = type.toUpperCase();
         } else {
-            System.out.println("Type must be INCOME or EXPENSE");
+            System.out.println("Type must be INCOME or EXPENSE. Try Again!");
+            System.out.println("Enter type(Income/Expense): ");
+
         }
     }
 
     public void setAmount(double amount) {
         if (amount < 0) {
-            System.out.println("Amount must be positive");
+            System.out.println("Amount must be positive value. Try Again!");
+            System.out.println("Enter amount: ");
             return;
         }
         this.amount = amount;
@@ -64,7 +67,7 @@ public class Transaction {
     public String toString() {
         return "Id = " + id +
                 ", Type = " + type +
-                ", Amount = " + amount +
+                ", Amount = " + amount + " Taka" +
                 ", Date = " + date +
                 ", Description = " + description;
     }
