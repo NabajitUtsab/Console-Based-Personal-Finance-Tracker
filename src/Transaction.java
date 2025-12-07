@@ -1,12 +1,14 @@
 public class Transaction {
 
-    private String id;
+    private final String id ;
     private String type;
     private double amount;
     private String date;
     private String description;
 
-    public Transaction() {}
+    public Transaction(String id) {
+        this.id = id;
+    }
 
     public Transaction(String id, String type, double amount, String date, String description) {
         this.id = id;
